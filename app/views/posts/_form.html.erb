@@ -1,0 +1,34 @@
+<% if @post.errors.any? %>
+<div class="alert alert-dander">
+  <h5><%= t('common errors') %></h5>
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end%>
+    </ul>
+</div>
+<% end %>
+
+<%= form_for @post do |f| %>
+
+<div class="form-group">
+  <%= f.label :title %>
+  <%= f.text_field :title, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :summary %>
+  <%= f.text_area :summary, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :body %>
+  <%= f.trix_editor :body, class: 'editor' %>
+</div>
+
+<div class="form-group">
+<%= f.submit 'Зберегти', class: 'btn btn-primary' %>
+<%= link_to 'Назад', :back, class: 'btn btn-info' %>
+</div>
+
+<% end %>

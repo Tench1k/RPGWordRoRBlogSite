@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RpgWorld</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body style="background-color: #f9ffff">
+
+
+    <div class="container" id="img"  style="background-color: #efecec">
+
+      <div id="about">  <%= link_to 'Скачати', 'http://cdn.4game.com/new4game/web-installer/RagnarokOnline-Setup.exe',  class:
+          'btn btn-primary pull-left' %>
+                                             </div>
+
+
+
+
+
+            <div id="posts" ><%= link_to 'Новини', posts_path, class:
+            'btn btn-primary pull-left' %>
+            </div>
+
+            <div class="addpost">  <%= link_to 'Добавити пост', new_post_path, class:
+              'btn btn-primary pull-left' %></div>
+
+
+              <ul class=" navbar-nav pull-right">
+                    <% if user_signed_in? %>
+
+                    <li class="nav-item">
+                      <%= link_to "Профіль", '/users/edit', class: 'btn btn-primary' %>
+                    </li>
+
+                      <li class="nav-item">
+                        <%= link_to "Вихід", destroy_user_session_path, method: :delete, class: 'btn btn-primary' %>
+                      </li>
+                    <% else %>
+                      <li class="nav-item">
+                        <%= link_to "Вхід", new_user_session_path, class: 'btn btn-primary' %>
+                      </li>
+                      <li class="nav-item">
+                        <%= link_to "Реєстрація", new_user_registration_path, class: 'btn btn-primary ' %>
+                      </li>
+                    <% end %>
+
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+
+
+
+
+
+<div class="container main">
+  <div class="row">
+    <div class="col-md-12">
+      <% flash.each do |name, message| %>
+      <div class="alert <%= bootstrap_class_for(name) %>
+        <button class="close" data-dismiss="alert">&times;</button>
+        <% message %>
+      </div>
+      <% end %>
+      </div>
+        </div>
+
+    <%= yield %>
+    </div>
+  </body>
+</html>

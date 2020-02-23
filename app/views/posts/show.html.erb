@@ -1,0 +1,18 @@
+<article class="post">
+  <section class="post-head">
+<h1><%= @post.title  %></h1>
+<small>
+  <time><%= @post.created_at.to_date.strftime("%d %B, %Y") %> </time>
+  |
+  <%= link_to 'Редагувати', edit_post_path(@post) %>
+  |
+  <%= link_to 'Видалити', edit_post_path(@post), method: :delete, data: {confirm: 'Ви впевнені?'} %>
+</small>
+    </section>
+    <selection class="post-body">
+
+<%= @post.body.html_safe %>
+      </selection>
+  </article>
+
+<%= render 'disqus' %>
